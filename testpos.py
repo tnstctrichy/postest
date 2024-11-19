@@ -4,7 +4,6 @@ import plotly.express as px
 from datetime import datetime, timedelta
 from io import BytesIO
 import os
-import shutil
 
 # Streamlit configuration
 st.set_page_config(
@@ -180,8 +179,8 @@ if page == "View Dashboard":
         search_branch = st.sidebar.text_input("Search by Branch")
 
         if search_route or search_branch:
-            filtered_data = data[
-                (data["RTNO"].astype(str).str.contains(search_route, case=False, na=False) if search_route else True) &
+            filtered_data = data[(
+                data["RTNO"].astype(str).str.contains(search_route, case=False, na=False) if search_route else True) &
                 (data["BRANCH"].astype(str).str.contains(search_branch, case=False, na=False) if search_branch else True)
             ]
             st.markdown(f"### Search Results for Route '{search_route}' and Branch '{search_branch}'")
